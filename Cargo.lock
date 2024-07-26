@@ -869,6 +869,7 @@ dependencies = [
  "rocket_codegen",
  "rocket_http",
  "serde",
+ "serde_json",
  "state",
  "tempfile",
  "time",
@@ -885,6 +886,7 @@ name = "rocket-app"
 version = "0.1.0"
 dependencies = [
  "rocket",
+ "serde_json",
 ]
 
 [[package]]
