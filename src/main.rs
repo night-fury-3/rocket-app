@@ -6,10 +6,15 @@ mod auth;
 use auth::BasicAuth;
 use rocket::response::status;
 use rocket::serde::json::{json, Value};
+#[macro_use]
+extern crate rocket_sync_db_pools;
+
+#[database("sqlite")]
+struct DbConn(diesel::SqliteConnection);
 
 #[get("/rustaceans")]
-fn get_rustaceans(_auth: BasicAuth) -> Value {
-    json!([{"id": 1, "name": "John Doe"}, {"id": 2, "name": "John Doe again"}])
+fn get_rustaceans(_auth: BasicAuth, _db: DbConn) -> Value {
+    json!([{ "id": 1, "name": "John Doe" }, { "id": 2, "name": "John Doe again" }])
 }
 #[get("/rustaceans/<id>")]
 fn view_rustacean(id: i32, _auth: BasicAuth) -> Value {
@@ -47,6 +52,7 @@ async fn main() {
             ],
         )
         .register("/", catchers![not_found])
+        .attach(DbConn::fairing())
         .launch()
         .await;
 }
