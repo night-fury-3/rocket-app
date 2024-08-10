@@ -2,19 +2,31 @@
 extern crate rocket;
 
 mod auth;
+mod models;
+mod schema;
 
 use auth::BasicAuth;
+use diesel::prelude::*;
+use models::Rustacean;
 use rocket::response::status;
 use rocket::serde::json::{json, Value};
-#[macro_use]
-extern crate rocket_sync_db_pools;
+use rocket_sync_db_pools::database;
+use schema::rustaceans;
 
 #[database("sqlite")]
 struct DbConn(diesel::SqliteConnection);
 
 #[get("/rustaceans")]
-fn get_rustaceans(_auth: BasicAuth, _db: DbConn) -> Value {
-    json!([{ "id": 1, "name": "John Doe" }, { "id": 2, "name": "John Doe again" }])
+async fn get_rustaceans(_auth: BasicAuth, db: DbConn) -> Value {
+    db.run(|c| {
+        let result = rustaceans::table
+            .order(rustaceans::id.desc())
+            .limit(1000)
+            .load::<Rustacean>(c)
+            .expect("DB error");
+        json!(result)
+    })
+    .await
 }
 #[get("/rustaceans/<id>")]
 fn view_rustacean(id: i32, _auth: BasicAuth) -> Value {

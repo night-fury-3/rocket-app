@@ -1,2 +1,2 @@
 [global.databases]
-sqlite = { url = "./databases.sqlite" }
+sqlite = { url = "./database.sqlite" }
