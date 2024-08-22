@@ -77,23 +77,3 @@ Contributions are welcome! Please follow these steps to contribute:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any inquiries or issues, please contact:
-
-- **Your Name**: [your.email@example.com](mailto:your.email@example.com)
-- [GitHub Issues](https://github.com/your-username/your-project/issues)
-
-```
-
-### Tips for Customization:
-
-- **Project Name and Description**: Replace placeholders with your real project name and a brief but comprehensive description.
-- **Features**: List the most important features of your project.
-- **Prerequisites**: Specify the exact versions and additional dependencies if necessary.
-- **API Endpoints**: Detail each endpoint, including any parameters or body data required.
-- **License**: Ensure the correct license information is provided and linked.
-- **Contact**: Include real contact information to facilitate communication with users or contributors.
-
-Keep your README updated as the project evolves to accurately reflect the current state and capabilities of your project.
