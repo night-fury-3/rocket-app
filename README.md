@@ -1,6 +1,3 @@
-Here's a filled-out version of your README for the project named RocketApp:
-
-```markdown
 # RocketApp
 
 ![License badge](https://img.shields.io/badge/license-MIT-blue.svg)
